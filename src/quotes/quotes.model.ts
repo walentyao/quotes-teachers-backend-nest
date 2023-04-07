@@ -1,9 +1,10 @@
-import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from "sequelize-typescript";
+import {BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Table} from "sequelize-typescript";
 import {User} from "../users/users.model";
+import {Likes} from "./likes.model";
 
 interface QuoteCreationAttrs {
-    teacher:string;
-    faculty:string;
+    teacher: string;
+    faculty: string;
     content: string;
     userId: number;
 }
@@ -28,5 +29,8 @@ export class Quote extends Model<Quote, QuoteCreationAttrs> {
 
     @BelongsTo(() => User)
     author: User
+
+    @HasMany(() => Likes)
+    likes: Likes[]
 
 }
